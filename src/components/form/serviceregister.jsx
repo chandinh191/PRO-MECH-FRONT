@@ -6,7 +6,6 @@ const data = [
     'Chỉnh màu màn hình', 'Cài đặt phần mềm', 'Sửa lỗi phần mềm', 'Sửa lỗi phần cứng', 'Phủi bụi (80.000 VND)', 'Tra keo tản nhiệt (100.000 VND)', 'Tra keo tản nhiệt (300.000 VND)'
 ]
 function Serviceregister(props) {
-    const [combo, setCombo] = useState('');
     const [autocompleteValues, setAutocompleteValues] = useState([]);
     const [send, setSend] = useState({
         name: {},
@@ -20,9 +19,7 @@ function Serviceregister(props) {
     }
 
     const handleChange = (event) => {
-        setCombo(event.target.value);
         try {
-            setCombo = event.target.value
         } catch (err) {
             const value = event.target.value;
             setSend({

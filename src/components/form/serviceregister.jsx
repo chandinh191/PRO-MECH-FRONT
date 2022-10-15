@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
+import { Autocomplete, Button, Stack, TextField, Typography } from '@mui/material';
+import { Box } from '@mui/system';
 import Axios from 'axios';
-import PropTypes from 'prop-types'
-import { Box } from '@mui/system'
-import { Autocomplete, Button, InputLabel, MenuItem, Select, Stack, TextField, Typography } from '@mui/material'
+import React, { useState } from 'react';
 const data = [
     'Chỉnh màu màn hình', 'Cài đặt phần mềm', 'Sửa lỗi phần mềm', 'Sửa lỗi phần cứng', 'Phủi bụi (80.000 VND)', 'Tra keo tản nhiệt (100.000 VND)', 'Tra keo tản nhiệt (300.000 VND)'
 ]

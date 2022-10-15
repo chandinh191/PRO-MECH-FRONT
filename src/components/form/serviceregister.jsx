@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
+import Axios from 'axios';
 import PropTypes from 'prop-types'
 import { Box } from '@mui/system'
 import { Autocomplete, Button, InputLabel, MenuItem, Select, Stack, TextField, Typography } from '@mui/material'
 const data = [
-    'Chỉnh màu màn hình', 'Cài đặt phần mềm', 'Sửa lỗi phần mềm', 'Sửa lỗi phần cứng'
+    'Chỉnh màu màn hình', 'Cài đặt phần mềm', 'Sửa lỗi phần mềm', 'Sửa lỗi phần cứng', 'Phủi bụi (80.000 VND)', 'Tra keo tản nhiệt (100.000 VND)', 'Tra keo tản nhiệt (300.000 VND)'
 ]
 function Serviceregister(props) {
     const [combo, setCombo] = useState('');
@@ -11,10 +12,10 @@ function Serviceregister(props) {
     ]);
     const [send, setSend] = useState({
         name: {},
-        email: {},
+        password: {},
         phone: {},
-        combo: {},
-        autocompleteValues: [],
+        description: {}
+
     })
     const handleChange1 = (event, value) => {
         setAutocompleteValues(value)
@@ -32,8 +33,19 @@ function Serviceregister(props) {
         }
 
     };
-    const handlesubmit = (event) => {
 
+    const handlesubmit = (e) => {
+        e.preventDefault(e)
+        Axios.post("https://pro-mech.azurewebsites.net/Ticket/CreateTicket", {
+            name: send.name,
+            password: send.password,
+            phone: send.phone,
+            description: send.description,
+            service: autocompleteValues,
+        })
+            .then(res => {
+                console.log(res.data)
+            })
     }
     console.log(send)
     return (
@@ -43,27 +55,16 @@ function Serviceregister(props) {
             </Typography>
             <Box
                 component="form"
+                onSubmit={handlesubmit}
                 sx={{
                     '& > :not(style)': { m: 1, width: '45ch' },
                 }}
                 noValidate
                 autoComplete="off">
-                <TextField id="outlined-basic" label="TÊN" variant="outlined" onChange={handleChange} name='name' />
-                <TextField id="outlined-basic" label="Email" variant="outlined" onChange={handleChange} name='email' />
-                <TextField id="outlined-basic" label="SỐ ĐIỆN THOẠI" variant="outlined" onChange={handleChange} name='phone' />
-                <InputLabel id="select-combo">Gói dịch vụ:</InputLabel>
-                <Select
-                    value={combo}
-                    name='combo'
-                    onChange={handleChange}
-                >
-                    <MenuItem value={'Phủi bụi (80.000 VND)'}>Phủi bụi (80.000 VND)</MenuItem>
-                    <MenuItem value={'Tra keo tản nhiệt (100.000 VND)'}>Tra keo tản nhiệt (100.000 VND)</MenuItem>
-                    <MenuItem value={'Tra keo tản nhiệt (300.000 VND)'}>Tra keo tản nhiệt (300.000 VND)</MenuItem>
-                    <MenuItem value={'Phủi bụi (80.000 VND) + Tra keo tản nhiệt (100.000 VND)'}>Phủi bụi (80.000 VND) + Tra keo tản nhiệt (100.000 VND)</MenuItem>
-                    <MenuItem value={'Phủi bụi (80.000 VND) + Tra keo tản nhiệt (300.000 VND)'}>Phủi bụi (80.000 VND) + Tra keo tản nhiệt (300.000 VND)</MenuItem>
-                    <MenuItem value={''}>Không dùng dịch vụ này</MenuItem>
-                </Select>
+                <TextField label="TÊN" variant="outlined" onChange={handleChange} name='name' />
+                <TextField label="PASSWORD MÁY TÍNH" variant="outlined" onChange={handleChange} name='password' />
+                <TextField label="SỐ ĐIỆN THOẠI" variant="outlined" onChange={handleChange} name='phone' />
+                <TextField label="MÔ TẢ TÌNH TRẠNG MÁY TÍNH" variant='outlined' onChange={handleChange} name='description'></TextField>
                 <Autocomplete
                     multiple
                     id="tags-standard"
@@ -83,10 +84,10 @@ function Serviceregister(props) {
                         />
                     )}
                 />
+
                 <Button
                     type="submit"
                     variant='contained'
-                // onSubmit={handlesubmit}
                 >
                     Submit
                 </Button>

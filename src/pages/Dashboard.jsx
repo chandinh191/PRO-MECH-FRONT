@@ -1,7 +1,7 @@
-import { Container, Skeleton, Typography } from '@mui/material'
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
-import { Box, Stack } from '@mui/system';
+import { Skeleton, Typography } from '@mui/material';
+import { Stack } from '@mui/system';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 
 function Dashboard() {
     const [data, setData] = useState()
@@ -19,7 +19,6 @@ function Dashboard() {
                 // Handle Error Here
                 console.error(err);
             });
-        console.log(data)
     }, [])
     return (
         <Stack  >

@@ -8,8 +8,7 @@ const data = [
 ]
 function Serviceregister(props) {
     const [combo, setCombo] = useState('');
-    const [autocompleteValues, setAutocompleteValues] = useState([
-    ]);
+    const [autocompleteValues, setAutocompleteValues] = useState([]);
     const [send, setSend] = useState({
         name: {},
         password: {},
@@ -20,6 +19,7 @@ function Serviceregister(props) {
     const handleChange1 = (event, value) => {
         setAutocompleteValues(value)
     }
+
     const handleChange = (event) => {
         setCombo(event.target.value);
         try {
@@ -33,7 +33,7 @@ function Serviceregister(props) {
         }
 
     };
-
+    console.log(autocompleteValues)
     const handlesubmit = (e) => {
         e.preventDefault(e)
         Axios.post("https://pro-mech.azurewebsites.net/Ticket/CreateTicket", {
@@ -48,16 +48,17 @@ function Serviceregister(props) {
             })
     }
     console.log(send)
+    console.log(JSON.stringify(autocompleteValues))
     return (
-        <Stack>
+        <Stack >
             <Typography variant='h4'>
-                Đăng ký dịch VỤ
+                Đăng ký dịch vụ
             </Typography>
             <Box
                 component="form"
                 onSubmit={handlesubmit}
                 sx={{
-                    '& > :not(style)': { m: 1, width: '45ch' },
+                    '& > :not(style)': { m: 1, width: '100ch' },
                 }}
                 noValidate
                 autoComplete="off">
@@ -76,10 +77,10 @@ function Serviceregister(props) {
                     defaultValue={[data[1]]}
                     renderInput={(params) => (
                         <TextField
+                            sx={{ ml: '8.5rem' }}
                             {...params}
                             variant="standard"
-                            label="Dịch vụ đồng giá 80.000 VND"
-                            placeholder="Dịch vụ đồng giá"
+                            label="Dịch vụ"
 
                         />
                     )}

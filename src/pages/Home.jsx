@@ -63,21 +63,21 @@ function Home() {
                         Danh sách dịch vụ
                     </Typography>
                 </Box>
-                <Box ml={20} sx={{ width: '70%' }}>
+                <Box ml={20} sx={{ width: '50%' }}>
                     {data.map((a) => (
-                        <Stack sx={{borderBottom:'2px solid black', textAlign:'left'}}>
-                            <Stack sx={{ alignItems:'center'}} direction="row">
+                        <Stack sx={{ borderBottom: '2px solid black', textAlign: 'left' }}>
+                            <Stack sx={{ alignItems: 'center' }} direction="row">
                                 <img src={a.img} alt='' style={{ width: '56px', height: '56px' }} />
-                                <h3 style={{marginLeft:'1rem'}}>{a.label}</h3>
-                                </Stack>
-                            <p style={{ fontSize:'1.4rem' }}>{a.p}</p>
-                           
+                                <h3 style={{ marginLeft: '1rem' }}>{a.label}</h3>
+                            </Stack>
+                            <p style={{ fontSize: '1.4rem' }}>{a.p}</p>
+
                         </Stack>
                     ))}
                 </Box>
-                
+
             </Stack>
-            <Button >
+            <Button variant='contained' sx={{ bgcolor: '#C5CBCF', mt: 5 }}>
                 Đăng kí sử dụng dịch vụ
             </Button>
         </Container>
